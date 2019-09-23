@@ -1,4 +1,4 @@
-// 10727217 ≥Ø¨≥ﬁ≥ 10727226 ¥Â§l¿s 
+// 10727217 Èô≥ÁÇØÁëã 10727226 Ê∏∏Â≠êÈæç 
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
@@ -8,45 +8,45 @@ using namespace std;
 
 unsigned long long times4(int i, unsigned long long number, unsigned long long &test, unsigned long long &num1, unsigned long long &num2, unsigned long long times1) {
 	unsigned long long times3 = 1 ;
-	if(number % test != 0 && times1 < 25000) {     // ®C25000∞O§@¶∏ 
+	if(number % test != 0 && times1 < 25000) {     // ÊØè25000Ë®ò‰∏ÄÊ¨° 
 		test-- ;
 		times3 = times3 + times4(i, number, test, num1, num2, times1 + 1) ;
-	}
+	}  // if
 	else if(number % test == 0) {
 		num1 = test ;
 		num2 = number / test ;
-	}
+	}  // else if 
 	return times3 ;
 }
 void InnerRecursion(int i, unsigned long long number, unsigned long long test, unsigned long long num1, unsigned long long num2, unsigned long long times1, unsigned long long k) {
 	unsigned long long r = 0 ;
-    if( k < 400 && number % test  != 0) {     
-        r = times4(i, number, test, num1, num2, times1) ;
-        if(r == 25001) {
-            k++ ;
-        }
-        else if( r < 25001 && number % test == 0) {
+        if( k < 400 && number % test  != 0) {     
+          r = times4(i, number, test, num1, num2, times1) ;
+          if(r == 25001) {
+             k++ ;
+          } // if
+          else if( r < 25001 && number % test == 0) {
 		    num1 = test ;
 		    num2 = number / test ;
 		    cout << "[" << i << "]" << number <<  "=" <<  num1 << "*" << num2 <<  "(Inner recursion: " << k*25000 + r + 1 << " times)\n" ;
-		}
-	}
-	else if(k >= 400 && number % test != 0 ){  //∂WπL100000000¶∏ 
+	  }  // else if
+	} // if
+	else if(k >= 400 && number % test != 0 ){  //Ë∂ÖÈÅé100000000Ê¨° 
 		cout << "[" << i << "]" << number << " (Inner recursion: more than 10000000times)\n" ;
 		return ;
-	} 
+	}  // else if
 	else if(number % test == 0){
 		num1 = test ;
 		num2 = number / test ;
 		cout << "[" << i << "]" << number <<  "=" << num1 << "*" << num2 <<  "(Inner recursion: " << k*25000 + 1 << " times)\n" ;
-    }
-    if(number % test != 0) {
+        } // else if
+        if(number % test != 0) {
 		InnerRecursion(i, number, test, num1, num2, times1, k) ;
-	}
+	} // if
 } // InnerRecursion()
 void OuterRecursion(int max, int i, unsigned long long first, unsigned long long second, unsigned long long times2) {
 	unsigned long long number = 0 ;
-    number = first + second ;
+        number = first + second ;
 	if(i <= max) {
 		InnerRecursion(i, number, sqrt(number), 1, number, 0, 0) ;
 		OuterRecursion(max, i + 1, second, number, times2 + 1) ;
@@ -57,41 +57,41 @@ void OuterRecursion(int max, int i, unsigned long long first, unsigned long long
 } // OuterRecursion()
 int main() {
 	int quit = 0 ;
-	int method = 0 ; // ¨O∞j∞È¡Ÿªº∞j 
-	int max = 0 ; //∂O¶°º∆¶C™∫™¯´◊ 
-	unsigned long long test = 0 ; //c™∫≠pº∆æπ 
-    unsigned long long first = 0 ;
-    unsigned long long second = 1 ;
-    unsigned long long number = 0 ;
-    unsigned long long num1 = 0 ;
-    unsigned long long num2 = 0 ;
-    unsigned long long times1 = 0 ;
-    unsigned long long times2 = 0 ; 
+	int method = 0 ; // ÊòØËø¥ÂúàÈÇÑÈÅûËø¥ 
+	int max = 0 ; //Ë≤ªÂºèÊï∏ÂàóÁöÑÈï∑Â∫¶ 
+	unsigned long long test = 0 ; //cÁöÑË®àÊï∏Âô® 
+        unsigned long long first = 0 ;
+        unsigned long long second = 1 ;
+        unsigned long long number = 0 ;
+        unsigned long long num1 = 0 ;
+        unsigned long long num2 = 0 ;
+        unsigned long long times1 = 0 ;
+        unsigned long long times2 = 0 ; 
 	printf("please enter 0 or 1 to choose whether you want to quit or not.\n") ;
 	scanf("%d", &quit) ;
 	while(quit == 0 || quit != 1) {	
 	    if(quit == 0) {
 	    	printf("please enter the range of F series you want.\n") ;
-    	    scanf("%d",&max) ;
+    	        scanf("%d",&max) ;
         	if( max <= 0 || max > 92) {
-                printf("out of range or input is not a digit.\n") ;
-                printf("please enter 0 or 1 to choose whether you want to quit or not.\n") ;
-                scanf("%d", &quit) ;
-            	continue ;
-            } // if
-            printf("then choose the method you want to use.(1, 2)\n") ;
-            scanf("%d", &method) ;
+                  printf("out of range or input is not a digit.\n") ;
+                  printf("please enter 0 or 1 to choose whether you want to quit or not.\n") ;
+                  scanf("%d", &quit) ;
+            	  continue ;
+                } // if
+                printf("then choose the method you want to use.(1, 2)\n") ;
+                scanf("%d", &method) ;
         	if(method == 1) {
-        		first = 0 ;
-        		second = 1 ;
-        		number = 0 ;
-        		times2 = 0 ;
-        	    int i = 1 ;  //max™∫≠pº∆æπ 
-            	while(  i <= max ) {
+        	    first = 0 ;
+                    second = 1 ;
+        	    number = 0 ;
+        	    times2 = 0 ;
+        	    int i = 1 ;  //maxÁöÑË®àÊï∏Âô® 
+            	    while(  i <= max ) {
             		number = first + second ;
             		num1 = 1 ;
             		num2 = number ;
-            		for(test = sqrt(number) ; number % test != 0 ; test--){ // j≠t≥d±q1®Ïc§@≠”§@≠”ß‰•X¶]º∆, dªPf≠t≥d¶s®˙Æt≠»≥Ã§p™∫§@≤’¶]º∆ 
+            		for(test = sqrt(number) ; number % test != 0 ; test--){ // jË≤†Ë≤¨Âæû1Âà∞c‰∏ÄÂÄã‰∏ÄÂÄãÊâæÂá∫Âõ†Êï∏, dËàáfË≤†Ë≤¨Â≠òÂèñÂ∑ÆÂÄºÊúÄÂ∞èÁöÑ‰∏ÄÁµÑÂõ†Êï∏ 
 	            		times1++ ;
 	            	} // for
 	            	num1 = test ;
@@ -102,21 +102,21 @@ int main() {
 	            	i++ ;
 	            	times2++ ;
 	            	times1 = 0 ;
-    	        } // while
-            	printf("<Outer loop: %dtimes>\n", times2) ;
-            } // if
-            else if(method == 2) {
-            	OuterRecursion(max, 1, 0, 1, 0) ;
+    	            } // while
+            	    printf("<Outer loop: %dtimes>\n", times2) ;
+                 } // if
+                else if(method == 2) {
+            	    OuterRecursion(max, 1, 0, 1, 0) ;
         	} // else if
         	else {
-        		printf("please enter 1 or 2, thanks.\n") ;
+        	    printf("please enter 1 or 2, thanks.\n") ;
         	} // else
         	printf("please enter 0 or 1 to choose whether you want to quit or not.\n") ;
-        } // if
-        else if(quit != 1){
+            } // if
+            else if(quit != 1){
         	printf("please enter 0 or 1.\n") ;
-		} // else if
-		scanf("%d", &quit) ;
-    } // while
-    printf("thanks for using.\n") ;
+            } // else if
+	    scanf("%d", &quit) ;
+        } // while
+        printf("thanks for using.\n") ;
 } // main()
