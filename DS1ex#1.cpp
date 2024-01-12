@@ -1,4 +1,3 @@
-// 10727217 陳炯瑋 10727226 游子龍 
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
